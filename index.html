@@ -197,25 +197,31 @@ body::before {
   .topbar-meta .meta-hide { display: none; }
 }
 
-/* ============ HERO ============ */
+/* ============ HERO (DARK + GOLDEN BOKEH) ============ */
 .hero {
   min-height: 100vh;
   padding: 140px 40px 60px;
   display: flex;
   align-items: center;
   position: relative;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid rgba(242, 237, 228, 0.15);
   overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.62) 45%, rgba(10, 10, 10, 0.82) 100%),
+    url('https://images.pexels.com/photos/1581186/pexels-photo-1581186.jpeg?auto=compress&cs=tinysrgb&w=2400') center/cover no-repeat;
+  color: var(--cream);
 }
 
+/* extra atmospheric vignette */
 .hero::before {
   content: '';
   position: absolute;
-  top: 50%; right: -300px;
-  width: 800px; height: 800px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(192, 192, 192, 0.13) 0%, transparent 60%);
-  transform: translateY(-50%);
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 50% 50%, transparent 0%, rgba(10, 10, 10, 0.55) 100%),
+    radial-gradient(circle 600px at 85% 35%, rgba(196, 150, 80, 0.2), transparent 60%);
+  pointer-events: none;
+  z-index: 1;
   animation: float-orb 35s ease-in-out infinite;
 }
 
@@ -250,7 +256,7 @@ body::before {
   display: flex;
   align-items: center;
   gap: 16px;
-  color: var(--gray-warm);
+  color: rgba(242, 237, 228, 0.75);
   font-weight: 500;
   opacity: 0;
   animation: fade-up 1.2s 0.1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
@@ -271,7 +277,8 @@ body::before {
   line-height: 0.96;
   letter-spacing: -0.04em;
   font-variation-settings: "opsz" 144;
-  color: var(--ink);
+  color: var(--cream);
+  text-shadow: 0 2px 40px rgba(0,0,0,0.35);
 }
 .hero-title em {
   font-style: italic;
@@ -296,10 +303,11 @@ body::before {
   font-size: 20px;
   line-height: 1.55;
   max-width: 620px;
-  color: var(--ink-soft);
+  color: rgba(242, 237, 228, 0.82);
   font-weight: 400;
   opacity: 0;
   animation: fade-up 1.2s 1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  text-shadow: 0 1px 20px rgba(0,0,0,0.4);
 }
 
 @keyframes fade-up {
@@ -311,7 +319,7 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 36px;
-  border-left: 1px solid var(--line-strong);
+  border-left: 1px solid rgba(242, 237, 228, 0.2);
   padding-left: 40px;
   align-self: stretch;
   justify-content: flex-end;
@@ -331,14 +339,15 @@ body::before {
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.03em;
+  color: var(--cream);
 }
-.hero-stat-num .unit { font-size: 26px; }
+.hero-stat-num .unit { font-size: 26px; color: var(--silver); }
 .hero-stat-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--gray-warm);
+  color: rgba(242, 237, 228, 0.6);
   max-width: 290px;
   line-height: 1.5;
 }
@@ -353,7 +362,7 @@ body::before {
   letter-spacing: 0.1em;
   text-align: right;
   line-height: 1.7;
-  color: var(--gray-warm);
+  color: rgba(242, 237, 228, 0.6);
   z-index: 3;
 }
 .hero-corner .doc-id { font-weight: 500; }
@@ -367,13 +376,14 @@ body::before {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--gray-warm);
+  color: rgba(242, 237, 228, 0.55);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
   opacity: 0;
   animation: fade-up 1.2s 1.7s forwards;
+  z-index: 3;
 }
 .scroll-indicator::after {
   content: '';
@@ -388,11 +398,11 @@ body::before {
 }
 
 @media (max-width: 900px) {
-  .hero { padding: 110px 20px 50px; }
+  .hero { padding: 110px 20px 50px; background-attachment: scroll; }
   .hero-inner { grid-template-columns: 1fr; gap: 50px; }
   .hero-right {
     border-left: none;
-    border-top: 1px solid var(--line-strong);
+    border-top: 1px solid rgba(242, 237, 228, 0.2);
     padding-left: 0;
     padding-top: 36px;
   }
@@ -1758,6 +1768,97 @@ footer .left { color: rgba(242, 237, 228, 0.5); }
 .reveal-stagger.in > *:nth-child(9) { transition-delay: 0.69s; }
 .reveal-stagger.in > *:nth-child(n+10) { transition-delay: 0.77s; }
 
+/* ============ CHAPTER BREAK (dark botanical) ============ */
+.chapter-break {
+  position: relative;
+  min-height: 70vh;
+  padding: 140px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.55) 50%, rgba(10, 10, 10, 0.82) 100%),
+    url('https://images.pexels.com/photos/4430337/pexels-photo-4430337.jpeg?auto=compress&cs=tinysrgb&w=2400') center/cover no-repeat;
+  background-attachment: fixed;
+  color: var(--cream);
+}
+.chapter-break::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 90% at 50% 50%, transparent 0%, rgba(10, 10, 10, 0.45) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.cb-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+.cb-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(242, 237, 228, 0.75);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cb-eyebrow::before, .cb-eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--silver), transparent);
+  background-size: 200% 100%;
+  animation: shimmer-line 14s linear infinite;
+}
+.cb-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(34px, 5.5vw, 80px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 1100px;
+  color: var(--cream);
+  font-variation-settings: "opsz" 144;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+}
+.cb-headline em { font-style: italic; color: var(--cream); }
+.cb-headline .silver-mercury { font-style: italic; }
+.cb-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(242, 237, 228, 0.6);
+  max-width: 720px;
+  line-height: 1.8;
+}
+.cb-meta span { color: var(--cream); margin: 0 8px; }
+
+@media (max-width: 900px) {
+  .chapter-break {
+    min-height: auto;
+    padding: 90px 24px;
+    background-attachment: scroll;
+  }
+  .cb-inner { gap: 28px; }
+  .cb-headline { font-size: clamp(30px, 7vw, 44px); line-height: 1.08; }
+  .cb-eyebrow { font-size: 10px; }
+  .cb-eyebrow::before, .cb-eyebrow::after { width: 24px; }
+  .cb-meta { font-size: 10px; letter-spacing: 0.1em; }
+}
+
 /* ============ MOBILE HARDENING ============ */
 @media (max-width: 768px) {
   /* Reveal animations OFF en móvil — evita contenido invisible si IntersectionObserver no dispara */
@@ -2015,6 +2116,15 @@ footer .left { color: rgba(242, 237, 228, 0.5); }
         <div class="footer">→ 3 NOMs · LISTOS PARA RETAIL Y EXPORT</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CHAPTER BREAK — botanical (antes de Proof) -->
+<section class="chapter-break">
+  <div class="cb-inner">
+    <div class="cb-eyebrow">Capítulo II · La prueba</div>
+    <h2 class="cb-headline">La diferencia no está en lo que añadimos. Está en lo que <em>nos negamos</em> a poner.</h2>
+    <div class="cb-meta">Sin parabenos <span>·</span> sin sulfatos <span>·</span> sin fenoxietanol <span>·</span> sin fragancias sintéticas <span>·</span> sin siliconas baratas</div>
   </div>
 </section>
 
